@@ -1,5 +1,3 @@
-absolute_urls: false
-
 home:
   alias: '/home'
 
@@ -22,7 +20,7 @@ twig:
   cache: true
   debug: true
   auto_reload: true
-  autoescape: true
+  autoescape: false
 
 assets:
   css_pipeline: false
@@ -31,14 +29,8 @@ assets:
   js_pipeline: false
   js_minify: true
 
-errors:
-  display: true
-  log: true
-
 debugger:
   enabled: false
   twig: true
   shutdown:
     close_connection: true
-gpm:
-  verify_peer: true
