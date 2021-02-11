@@ -1,0 +1,13 @@
+{% block hero %}
+    {% for module in page.collection() if module.template == 'modular/hero' and (module.header.hero_inline != true or (module.header.hero_inline is null)) %}
+	<div id="{{ module.menu|hyphenize }}"></div>
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    {% for module in page.collection() if module.template != 'modular/hero'  or module.header.hero_inline == true %}
+        <div id="{{ module.menu|hyphenize }}"></div>
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}

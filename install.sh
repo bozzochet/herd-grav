@@ -16,3 +16,5 @@ bin/gpm install consistent-backup-name
 bin/gpm install facebook-feed
 
 bin/gpm install pdf-js
+
+bin/gpm install devtools

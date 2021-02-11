@@ -28,3 +28,7 @@ git pull original master
 dove devo specificare ESPLICITAMENTE:
 - il remote: original (invece che origin)
 - il branch: master
+
+-------------------------------------------------------------------------------------------------------------------
+
+Una volta scaricato il mio repo vanno fatte delle operazioni di "install". Le ho messe dentro un script bash, intall.sh
