@@ -7,7 +7,7 @@ media_order: 'header.jpg,IMGP6152.jpg'
 ---
 
 # Matteo Duranti
-## INFN-Perugia Researcher
+## Astroparticle Researcher - INFN-Perugia
 
 "There are 10 types of physicists: those who are able to code and those who don't"
 

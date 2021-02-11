@@ -1,5 +1,5 @@
-title: MyFeatures
-'@extends': Features
+title: Features
+'@extends': default
 
 form:
   fields:
