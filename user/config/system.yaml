@@ -2,7 +2,8 @@ home:
   alias: '/home'
 
 pages:
-  theme: quark
+#  theme: quark
+  theme: my-quark
   markdown:
     extra: false
   process:
