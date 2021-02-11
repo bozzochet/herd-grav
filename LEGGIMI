@@ -1,0 +1,30 @@
+Questo mio fork ha due repo:
+
+bozzo@MacBook-Pro:grav> git remote -v
+origin	https://github.com/bozzochet/grav.git (fetch)
+origin	https://github.com/bozzochet/grav.git (push)
+original	https://github.com/getgrav/grav.git (fetch)
+original	https://github.com/getgrav/grav.git (push)
+
+ed il default è quello mio
+
+bozzo@MacBook-Pro:grav> git branch -vv
+* master 4f8855f6 [origin/master] up
+
+bozzo@MacBook-Pro:grav> git status -sb
+## master...origin/master
+?? LEGGIMI
+?? user.bkp/
+
+quando faccio il pull
+
+git pull
+
+pesco dal default (origin/master) ma posso scegliere di aggiornare anche rispetto a quello da cui ho forkato
+
+
+git pull original master
+
+dove devo specificare ESPLICITAMENTE:
+- il remote: original (invece che origin)
+- il branch: master
