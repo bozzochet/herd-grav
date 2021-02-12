@@ -18,3 +18,5 @@ bin/gpm install facebook-feed
 bin/gpm install pdf-js
 
 bin/gpm install devtools
+
+bin/gpm install page-inject

@@ -1,0 +1,20 @@
+---
+title: Theses
+body_classes: modular
+class: small
+features:
+    -
+        icon: 'fa fa-flask'
+        header: 'Maura Graziani'
+        text: 'Time dependence of electrons and positrons fluxes measured with the AMS-02 spectrometer'
+        url: null
+    -
+        icon: 'fa fa-flask'
+        header: 'Marta Crispoltoni'
+        text: 'Measurement of the (e<sup>+<sup> + e-) flux with AMS on the ISS after six years in space'
+        url: null
+menu: Theses
+---
+
+# Theses - Tesi
+## **UniPG - Corso di Laurea in Fisica (Triennale & Magistrale) & PhD**
