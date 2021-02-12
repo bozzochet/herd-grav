@@ -12,12 +12,12 @@ features:
         icon: 'fa fa-graduation-cap'
         header: 'Marta Crispoltoni </br> (XXX Ciclo)'
         text: 'Measurement of the (e<sup>+</sup> + e<sup>-</sup>) flux with AMS on the ISS after six years in space'
-        url: null
+        url: phdtheses/_tesi/TesiPhDCrispoltoni.pdf
     -
         icon: 'fa fa-graduation-cap'
         header: 'Maura Graziani </br> (XXVIII Ciclo)'
         text: 'Time dependence of electrons and positrons fluxes measured with the AMS-02 spectrometer'
-        url: null
+        url: phdtheses/_tesi/TesiPhDGraziani.pdf
 visible: false
 ---
 

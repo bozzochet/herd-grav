@@ -16,9 +16,9 @@ media_order: K05911G010_PA.jpg
 [About ALADInO](https://www.cosmos.esa.int/documents/1866264/3219248/BattistonR_ALADINO_PROPOSAL_20190805_v1.pdf?classes=btn,btn-primary,btn-lg)
 [About AMS-100](https://www1b.physik.rwth-aachen.de/~schael/AMS-100.html?classes=btn,btn-primary,btn-lg)
 
-#### [Publications](../../publications)  
-#### [INSPIRE-HEP public profile](https://inspirehep.net/authors/1207367?ui-citation-summary=true#with-citation-summary)  
-#### [ORCID public profile](https://orcid.org/0000-0003-0980-6425)  
-#### [Publons public profile](https://publons.com/researcher/3315195/matteo-duranti/)
+* [<h5>Publications</h5>](../../publications)
+* [<h5>INSPIRE-HEP public profile</h5>](https://inspirehep.net/authors/1207367?ui-citation-summary=true#with-citation-summary)  
+* [<h5>ORCID public profile</h5>](https://orcid.org/0000-0003-0980-6425)  
+* [<h5>Publons public profile</h5>](https://publons.com/researcher/3315195/matteo-duranti/)
 
 

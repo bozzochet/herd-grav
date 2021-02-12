@@ -7,7 +7,7 @@ features:
         icon: 'fa fa-graduation-cap'
         header: 'Enrico Catanzani </br> (2017-2018)'
         text: 'Anisotropy measurement in the incoming direction of charged cosmic rays with DAMPE experiment'
-        url: null
+        url: mastertheses/_tesi/TesiMagistraleCatanzani.pdf
 visible: false
 ---
 
