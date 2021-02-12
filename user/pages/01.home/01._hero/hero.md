@@ -10,9 +10,3 @@ media_order: 'header.jpg,IMGP6152.jpg'
 ## Astroparticle Researcher - INFN-Perugia
 
 "There are 10 types of physicists: those who are able to code and those who don't"
-
-[INSPIRE-HEP public profile](https://inspirehep.net/authors/1207367?ui-citation-summary=true#with-citation-summary)
-
-[ORCID public profile](https://orcid.org/0000-0003-0980-6425)
-
-[Publons public profile](https://publons.com/researcher/3315195/matteo-duranti/)
