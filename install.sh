@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #taken from: https://learn.getgrav.org/16/basics/installation
-composer install --no-dev -o
+#composer install --no-dev -o
+./composer.phar install --no-dev -o
 bin/grav install -y
 
 #to install used plugins:
