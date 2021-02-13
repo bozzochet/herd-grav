@@ -6,7 +6,7 @@ hero_image: IMGP6152.jpg
 media_order: 'header.jpg,IMGP6152.jpg'
 ---
 
-# Matteo Duranti Tonto
+# Matteo Duranti
 ## Astroparticle Researcher - INFN-Perugia
 
 "There are 10 types of physicists: those who are able to code and those who don't"
