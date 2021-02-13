@@ -15,7 +15,7 @@ features:
         url: laboratorio_16-17/_slides/Questionario2_risposte.pdf
     -
         icon: 'fa fa-file-pdf-o'
-        header: 'ADC'
+        header: 'Conversione A/D'
         text: null
         url: laboratorio_16-17/_slides/ADC.pdf
     -
@@ -40,7 +40,7 @@ features:
         url: laboratorio_16-17/_slides/ElettronicaDigitale_2parte.pdf
     -
         icon: 'fa fa-file-pdf-o'
-        header: 'Operazionale'
+        header: 'Amplifacatore operazionale'
         text: null
         url: laboratorio_16-17/_slides/Operazionali.pdf
     -
