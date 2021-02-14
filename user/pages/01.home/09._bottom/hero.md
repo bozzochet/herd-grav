@@ -8,8 +8,8 @@ hero_classes: 'hero-fullscreen overlay-light text-dark'
 hero_align: center
 hero_noarrow: true
 process:
-    markdown: false
     twig: true
+    markdown: false
 ---
 
 </br>
