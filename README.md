@@ -3,11 +3,11 @@
 It contains, under `user`, my full website (started using https://github.com/getgrav/grav-skeleton-onepage-site as template).
 
 It also contains (in the root dir):
-* LEGGIMI
-* install.sh
-* install_composer.sh
-* install_plugins.sh
-* remove_plugins.sh
+* `LEGGIMI`
+* `install.sh`
+* `install_composer.sh`
+* `install_plugins.sh`
+* `remove_plugins.sh`
 
 few scripts (to deply the website automatically) a dedicated readme (`LEGGIMI`, in italian...) file.
 
