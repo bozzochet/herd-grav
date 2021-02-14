@@ -1,6 +1,6 @@
 # Customized (fork) repo for Grav
 
-It contains, under `user`, my full website (started using https://github.com/getgrav/grav-skeleton-onepage-site as template).
+It contains, under `user/`, my full website (started using https://github.com/getgrav/grav-skeleton-onepage-site as template).
 
 It also contains (in the root dir):
 * `LEGGIMI`
