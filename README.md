@@ -1,4 +1,4 @@
-# Customized (fork) repo for Grav
+# Customized (fork) repo for Grav for HERD
 
 It contains, under `user/`, my full website (started using https://github.com/getgrav/grav-skeleton-onepage-site as template).
 
