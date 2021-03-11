@@ -2,11 +2,11 @@
 title: Home
 menu: Top
 hero_classes: 'parallax text-light overlay-dark'
-hero_image: IMGP6152.jpg
+hero_image: herd_in_space.png
 media_order: 'header.jpg,IMGP6152.jpg'
 ---
 
-# Matteo Duranti
-## Astroparticle Researcher - INFN-Perugia
+# HERD
+## The High Energy cosmic Radiation Detection facility
 
-"There are 10 types of physicists: those who are able to code and those who don't"
+A Cosmic Lighthouse Program onboard China’s Space Station, planned to be launched and assembled in 2020.
