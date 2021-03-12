@@ -3,6 +3,6 @@ visible: true
 onpage_menu: false
 content:
     items: '@self.modular'
-menu: About Us
+menu: 'About Us'
 ---
 

@@ -21,4 +21,11 @@ bin/gpm install -y github
 
 bin/gpm install -y blackhole
 
+bin/gpm install -y page-toc
+
 bin/gpm update -y
+
+# custom plugins
+cp -av de-capitalize-gitlab-links user/plugins/
+cd user/plugins/de-capitalize-gitlab-links/
+../../../composer.phar update
