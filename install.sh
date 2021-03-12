@@ -10,3 +10,6 @@ bin/grav install
 
 #to install used plugins:
 ./install_plugins.sh
+
+#to download the wiki repo and install the corresponding pages
+./clone_wiki_and_link.sh
