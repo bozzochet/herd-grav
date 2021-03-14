@@ -27,8 +27,8 @@ bin/gpm update -y
 
 # custom plugins
 if [ ! -e user/plugins/de-capitalize-gitlab-links/ ]
-	then
-	cp -av de-capitalize-gitlab-links user/plugins/
+then
+    cp -av de-capitalize-gitlab-links user/plugins/
 fi
 cd user/plugins/de-capitalize-gitlab-links/
 ../../../composer.phar update
