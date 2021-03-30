@@ -5,8 +5,8 @@
         {% if page.header.subtitle %}
         <h3 >{{ page.header.subtitle }}</h3>
         {% endif %}
-        {% include 'partials/blog/date.html.twig' %}
-        {% include 'partials/blog/taxonomy.html.twig' %}
+	{#        {% include 'partials/blog/date.html.twig' %} #}
+	{#        {% include 'partials/blog/taxonomy.html.twig' %} #}
     </div>
 {% endif %}
 
@@ -36,6 +36,7 @@
     {% endif %}
 </div>
 
+{#
 <p class="prev-next text-center">
     {% if not page.isLast %}
             <a class="btn" href="{{ page.prevSibling.url }}"><i class="fa fa-angle-left"></i> {{ 'THEME_QUARK.BLOG.ITEM.PREV_POST'|t }}</a>
@@ -45,3 +46,4 @@
         <a class="btn" href="{{ page.nextSibling.url }}">{{ 'THEME_QUARK.BLOG.ITEM.NEXT_POST'|t }} <i class="fa fa-angle-right"></i></a>
     {% endif %}
 </p>
+#}

@@ -30,33 +30,52 @@ do
 		then
 		    #ls -d ${WIKISPATH}/${i}/${j}/${k}
 		    BASENAME=`basename ${WIKISPATH}/${i}/${j}/${k} .md`
+#		    echo $BASENAME
 		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
 		    then
 			mkdir -p user/pages/${PART}/${j}
-			cp ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/item.md
+			echo "---" > user/pages/${PART}/${j}/item.md
+			echo "body_classes: 'header-dark header-transparent'" >> user/pages/${PART}/${j}/item.md
+			echo "hero_classes: 'text-light title-h1h2 overlay-dark-gradient hero-large parallax'" >> user/pages/${PART}/${j}/item.md
+			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/item.md
+			echo "---" >> user/pages/${PART}/${j}/item.md
+			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/item.md
+			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/
 		    else
 			mkdir -p user/pages/${PART}/${j}/${BASENAME}
-			cp ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/${BASENAME}/item.md
+			echo "---" > user/pages/${PART}/${j}/${BASENAME}/item.md
+			echo "body_classes: 'header-dark header-transparent'" >> user/pages/${PART}/${j}/${BASENAME}/item.md
+			echo "hero_classes: 'text-light title-h1h2 overlay-dark-gradient hero-large parallax'" >> user/pages/${PART}/${j}/${BASENAME}/item.md
+			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/${BASENAME}/item.md
+			echo "---" >> user/pages/${PART}/${j}/${BASENAME}/item.md
+			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/${BASENAME}/item.md
+			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/${BASENAME}/
 		    fi
 		fi
 	    done
 	else
-#	    if [ "${j}" == "home.md" ]
+#	    echo ${j}
+	    #	    if [ "${j}" == "home.md" ]
 	    if [ "${j}" == "index.md" ]
 	    then
 		./herd_wiki_template.sh ${PART} > item.md
 		echo "" >> item.md
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		mkdir -p user/pages/${PART}/
-		mv -v item.md user/pages/${PART}/
-		cp -v WikiTemplate/mountain.jpg user/pages/${PART}/
-	    else if [ "${j}" == "_sidebar.md" ]
-		 then
-		     mkdir -p user/pages/${PART}
-		     cp -a  WikiTemplate/modules user/pages/${PART}/
-		     cat ${WIKISPATH}/${i}/${j} > default.md
-		     mv -v default.md user/pages/${PART}/modules/sidebar/
-		 fi
+		mv item.md user/pages/${PART}/
+		cp WikiTemplate/mountain.jpg user/pages/${PART}/
+	    elif [ "${j}" == "_sidebar.md" ]
+	    then
+		mkdir -p user/pages/${PART}
+		cp -a WikiTemplate/modules user/pages/${PART}/
+		cat ${WIKISPATH}/${i}/${j} > default.md
+		mv default.md user/pages/${PART}/modules/sidebar/
+	    elif [ "${j}" == "Wanted.md" ]
+	    then
+		BASENAME=`basename ${WIKISPATH}/${i}/${j} .md`
+#		echo $BASENAME
+		mkdir -p user/pages/${PART}/${BASENAME}
+		cp ${WIKISPATH}/${i}/${j} user/pages/${PART}/${BASENAME}/item.md
 	    fi
 	fi
     done
