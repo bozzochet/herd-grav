@@ -7,7 +7,8 @@ mkdir -p $WIKISPATH
 rm -Rf ${WIKISPATH}/vdev
 #git clone git@git.recas.ba.infn.it:herd/HerdSoftware.wiki.git ${WIKISPATH}/vdev #master
 #git clone https://wiki-webdoc-readrepo:CXVwDJEyNa7zYXhqDS7t@git.recas.ba.infn.it/herd/HerdSoftware.wiki.git ${WIKISPATH}/vdev #master
-git clone https://git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/vdev #master
+#git clone https://git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/vdev #master
+git clone https://wiki-webdoc-readrepo:CXVwDJEyNa7zYXhqDS7t@git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/vdev #master
 
 #PART=01.blog
 
