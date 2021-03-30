@@ -40,7 +40,7 @@ do
 			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/item.md
 			echo "---" >> user/pages/${PART}/${j}/item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/item.md
-			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/
+#			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/
 		    else
 			mkdir -p user/pages/${PART}/${j}/${BASENAME}
 			echo "---" > user/pages/${PART}/${j}/${BASENAME}/item.md
@@ -49,7 +49,7 @@ do
 			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/${BASENAME}/item.md
 			echo "---" >> user/pages/${PART}/${j}/${BASENAME}/item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/${BASENAME}/item.md
-			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/${BASENAME}/
+#			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/${BASENAME}/
 		    fi
 		fi
 	    done
@@ -63,7 +63,7 @@ do
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		mkdir -p user/pages/${PART}/
 		mv item.md user/pages/${PART}/
-		cp WikiTemplate/mountain.jpg user/pages/${PART}/
+#		cp WikiTemplate/mountain.jpg user/pages/${PART}/
 	    elif [ "${j}" == "_sidebar.md" ]
 	    then
 		mkdir -p user/pages/${PART}
