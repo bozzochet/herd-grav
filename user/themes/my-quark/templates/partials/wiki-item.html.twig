@@ -24,11 +24,11 @@
     
     <div class="e-content">
       {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|raw }}
-      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string >
-      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(false)|raw }}
-      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|raw }}
-      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string >
-      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(false)|raw }}
+{#      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string > #}
+{#      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(false)|raw }} #}
+{#      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|raw }} #}
+{#      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string > #}
+{#      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(false)|raw }} #}
     </div>
 
     {% if page.header.continue_link is same as(true) and config.plugins.comments.enabled %}

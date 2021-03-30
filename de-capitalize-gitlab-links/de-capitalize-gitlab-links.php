@@ -93,13 +93,15 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 		      $newurl = $prefixpath.$onlythis;
 		      $rooturl = $this->grav['uri']->rootUrl(false);
 		      $newurl = str_replace($rooturl, "", $newurl);
-		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
-		      return '['.$newurl.']('.$newurl.')';#only to inspect
-		      return '['.$matches[1].'mdlinkmodified]('.$newurl.')';
+//		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
+//		      return '['.$newurl.']('.$newurl.')';#only to inspect
+//		      return '['.$matches[1].'mdlinkmodified]('.$newurl.')';
+		      return '['.$matches[1].']('.$newurl.')';
 		  }, $string);
 //	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '['.$matches[1].'mdlinkmodified]('.strtolower(str_replace(' ','-',$matches[2])).')'; }, $string);
 //	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '<a href="'.strtolower(str_replace(' ','-',$matches[2])).'">fava'.$matches[1].'</a>'; }, $string);
-        return $finalStr.'_markdownlinksprocessed';
+//        return $finalStr.'_markdownlinksprocessed';
+        return $finalStr;
     }
 
     /**
@@ -120,12 +122,14 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 	    $addressnomd = preg_replace('/.md$/', '', $address);
 	    $addressnomdnocapnosp = strtolower(str_replace(' ','-',$addressnomd));
 	    $finalStr = str_replace($address, $addressnomdnocapnosp, $finalStr);
-	    $finalStr = str_replace($match[3], $match[3].'htmllinkmodified', $finalStr);
+//	    $finalStr = str_replace($match[3], $match[3].'htmllinkmodified', $finalStr);
+	    $finalStr = str_replace($match[3], $match[3], $finalStr);
 //	    // $match[2] = link address
 //	    // $match[3] = link text
 	  }
 	}
-        return $finalStr.'_htmllinksprocessed';
+//        return $finalStr.'_htmllinksprocessed';
+        return $finalStr;
     }
 
     /**
