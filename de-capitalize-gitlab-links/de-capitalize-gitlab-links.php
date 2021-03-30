@@ -64,7 +64,10 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
     public function onTwigInitialized()
     {
         $this->grav['twig']->twig()->addFilter(
-            new \Twig_SimpleFilter('decapitlinks', [$this, 'DeCapitalizeGitLabLinks'])
+            new \Twig_SimpleFilter('processmarkdownlinks', [$this, 'ProcessMarkdownLinks'])
+        );
+	$this->grav['twig']->twig()->addFilter(
+            new \Twig_SimpleFilter('processhtmllinks', [$this, 'ProcessHTMLLinks'])
         );
 	$this->grav['twig']->twig()->addFilter(
             new \Twig_SimpleFilter('removetoc', [$this, 'RemoveGitLabTOC'])
@@ -78,9 +81,9 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
     }
 
     /**
-     * Remove capitalized letters and spaces from GitLab Markdown URLs
+     * Proces GitLab Markdown URLs
      */
-    public function DeCapitalizeGitLabLinks($string)
+    public function ProcessMarkdownLinks($string)
     {
     	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) {
 		      $thisurl = $_SERVER['REQUEST_URI'];
@@ -90,13 +93,39 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 		      $newurl = $prefixpath.$onlythis;
 		      $rooturl = $this->grav['uri']->rootUrl(false);
 		      $newurl = str_replace($rooturl, "", $newurl);
-#		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
-#		      return '['.$newurl.']('.$newurl.')';#only to inspect
-		      return '['.$matches[1].']('.$newurl.')';
+		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
+		      return '['.$newurl.']('.$newurl.')';#only to inspect
+		      return '['.$matches[1].'mdlinkmodified]('.$newurl.')';
 		  }, $string);
-#	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')'; }, $string);
-#	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '<a href="'.strtolower(str_replace(' ','-',$matches[2])).'">fava'.$matches[1].'</a>'; }, $string);
-        return $finalStr;
+//	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '['.$matches[1].'mdlinkmodified]('.strtolower(str_replace(' ','-',$matches[2])).')'; }, $string);
+//	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '<a href="'.strtolower(str_replace(' ','-',$matches[2])).'">fava'.$matches[1].'</a>'; }, $string);
+        return $finalStr.'_markdownlinksprocessed';
+    }
+
+    /**
+     * Proces GitLab HTML URLs
+     */
+    public function ProcessHTMLLinks($string)
+    {
+	$finalStr = $string;
+	// Original PHP code by Chirp Internet: www.chirpinternet.eu
+        // Please acknowledge use of this code by including this header.
+	$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+//	if(preg_match_all("/$regexp/siU", $string, $matches)) {
+	if(preg_match_all("/$regexp/siU", $string, $matches, PREG_SET_ORDER)) {
+	  // $matches[2] = array of link addresses
+          // $matches[3] = array of link text - including HTML code
+	  foreach($matches as $match) {
+	    $address = $match[2];
+	    $addressnomd = preg_replace('/.md$/', '', $address);
+	    $addressnomdnocapnosp = strtolower(str_replace(' ','-',$addressnomd));
+	    $finalStr = str_replace($address, $addressnomdnocapnosp, $finalStr);
+	    $finalStr = str_replace($match[3], $match[3].'htmllinkmodified', $finalStr);
+//	    // $match[2] = link address
+//	    // $match[3] = link text
+	  }
+	}
+        return $finalStr.'_htmllinksprocessed';
     }
 
     /**

@@ -1,6 +1,6 @@
-{% set feed_url = blog.url == '/' or blog.url == base_url_relative ? (base_url_relative~'/'~blog.slug) : blog.url %}
-{% set new_base_url = blog.url == '/' ? '' : blog.url %}
-{% set sidebar_root = header_var('sidebar_root', [page, blog])  %}
+{% set feed_url = wiki.url == '/' or wiki.url == base_url_relative ? (base_url_relative~'/'~wiki.slug) : wiki.url %}
+{% set new_base_url = wiki.url == '/' ? '' : wiki.url %}
+{% set sidebar_root = header_var('sidebar_root', [page, blog, wiki])  %}
 
 {% if config.plugins.simplesearch.enabled %}
 <div class="sidebar-content">

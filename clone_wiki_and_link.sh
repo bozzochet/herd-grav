@@ -6,7 +6,8 @@ mkdir -p $WIKISPATH
 
 rm -Rf ${WIKISPATH}/vdev
 #git clone git@git.recas.ba.infn.it:herd/HerdSoftware.wiki.git ${WIKISPATH}/vdev #master
-git clone https://wiki-webdoc-readrepo:CXVwDJEyNa7zYXhqDS7t@git.recas.ba.infn.it/herd/HerdSoftware.wiki.git ${WIKISPATH}/vdev #master
+#git clone https://wiki-webdoc-readrepo:CXVwDJEyNa7zYXhqDS7t@git.recas.ba.infn.it/herd/HerdSoftware.wiki.git ${WIKISPATH}/vdev #master
+git clone https://git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/vdev #master
 
 #PART=01.blog
 
@@ -33,7 +34,8 @@ do
 		fi
 	    done
 	else
-	    if [ "${j}" == "home.md" ]
+#	    if [ "${j}" == "home.md" ]
+	    if [ "${j}" == "index.md" ]
 	    then
 		./herd_wiki_template.sh ${PART} > item.md
 		echo "" >> item.md

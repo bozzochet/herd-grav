@@ -1,5 +1,4 @@
 <div class="content-item h-entry">
-  
 {% if not hero_image_name %}
     <div class="content-title text-center">
         {% include 'partials/blog/title.html.twig' with {title_level: 'h2'} %}
@@ -24,7 +23,12 @@
 {% endif %}
     
     <div class="e-content">
-      {{ page.content|removetoc|decapitlinks|markdown(false)|raw }}
+      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|raw }}
+      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string >
+      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(false)|raw }}
+      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|raw }}
+      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string >
+      {{ page.content|removetoc|processhtmllinks|processmarkdownlinks|markdown(false)|raw }}
     </div>
 
     {% if page.header.continue_link is same as(true) and config.plugins.comments.enabled %}

@@ -146,6 +146,18 @@ form:
       size: medium
       default: '/blog'
 
+    wiki_section:
+      type: section
+      title: Wiki Defaults
+      underline: true
+
+    wiki-page:
+      type: text
+      label: Wiki Page
+      help: The route to the wiki page when working with wiki sidebar
+      size: medium
+      default: '/wiki'
+
     spectre_section:
       type: section
       title: Spectre.css Options
