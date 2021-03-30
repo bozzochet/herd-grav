@@ -28,10 +28,16 @@ do
 #		echo ${WIKISPATH}/${i}/${j}/${k}
 		if [[ "${WIKISPATH}/${i}/${j}/${k}" == *".md" ]]
 		then
-#		    ls -d ${WIKISPATH}/${i}/${j}/${k}
+		    #ls -d ${WIKISPATH}/${i}/${j}/${k}
 		    BASENAME=`basename ${WIKISPATH}/${i}/${j}/${k} .md`
-		    mkdir -p user/pages/${PART}/${j}/${BASENAME}
-		    cp ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/${BASENAME}/item.md
+		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
+		    then
+			mkdir -p user/pages/${PART}/${j}
+			cp ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/item.md
+		    else
+			mkdir -p user/pages/${PART}/${j}/${BASENAME}
+			cp ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/${BASENAME}/item.md
+		    fi
 		fi
 	    done
 	else

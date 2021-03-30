@@ -122,6 +122,7 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 	    $addressnomd = preg_replace('/.md$/', '', $address);
 	    $addressnomdnocapnosp = strtolower(str_replace(' ','-',$addressnomd));
 	    $finalStr = str_replace($address, $addressnomdnocapnosp, $finalStr);
+	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
 //	    $finalStr = str_replace($match[3], $match[3].'htmllinkmodified', $finalStr);
 	    $finalStr = str_replace($match[3], $match[3], $finalStr);
 //	    // $match[2] = link address
