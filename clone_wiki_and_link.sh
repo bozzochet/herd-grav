@@ -31,20 +31,20 @@ do
 		    #ls -d ${WIKISPATH}/${i}/${j}/${k}
 		    BASENAME=`basename ${WIKISPATH}/${i}/${j}/${k} .md`
 #		    echo $BASENAME
-		    BASENAME=`echo $BASENAME | sed 's/:/_/'`
+		    BASENAME=`echo $BASENAME | sed 's/:/-/'`
 #		    echo $BASENAME
 		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
 		    then
 			mkdir -p user/pages/${PART}/${j}
 			./herd_wiki_template.sh ${PART} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
-			sed 's/%3A/_/' item.md > item.md.new
+			sed 's/%3A/-/' item.md > item.md.new
 			mv item.md.new user/pages/${PART}/${j}/item.md
 		    else
 			mkdir -p user/pages/${PART}/${j}/${BASENAME}
 			./herd_wiki_template.sh ${PART} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
-			sed 's/%3A/_/' item.md > item.md.new
+			sed 's/%3A/-/' item.md > item.md.new
 			mv item.md.new user/pages/${PART}/${j}/${BASENAME}/item.md
 		    fi
 		fi
