@@ -21,6 +21,7 @@ do
     for j in `ls ${WIKISPATH}/${i}`
     do
 #	echo ${WIKISPATH}/${i}/${j}
+	mkdir -p user/pages/${PART}/${j}
 	if [ -d ${WIKISPATH}/${i}/${j} ]
 	then
 	    for k in `ls ${WIKISPATH}/${i}/${j}`
@@ -47,6 +48,9 @@ do
 			sed 's/%3A/-/' item.md > item.md.new
 			mv item.md.new user/pages/${PART}/${j}/${BASENAME}/item.md
 		    fi
+		else
+		    #		    echo ${WIKISPATH}/${i}/${j}/${k}
+		    cp -a ${WIKISPATH}/${i}/${j}/${k} user/pages/${PART}/${j}/${k}
 		fi
 	    done
 	else
