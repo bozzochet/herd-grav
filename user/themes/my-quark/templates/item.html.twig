@@ -1,6 +1,7 @@
 {% extends 'partials/base.html.twig' %}
 {% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
 {% set wiki = page.find(header_var('wiki_url')|defined(theme_var('wiki-page'))) %}
+{% set item_type = page.header.item_type %}
 {% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog, wiki])|defined(true) %}
 {% set show_sidebar = header_var('show_sidebar', [page, blog, wiki])|defined(true)  %}
 {% set show_pagination = header_var('show_pagination', [page, blog, wiki])|defined(true) %}
@@ -14,7 +15,7 @@
             <h1>{{ page.title }}</h1>
             <h2>{{ page.header.subtitle }}</h2>
 {#	    {{ hero_image }} #}
-	    {% if blog %}
+	    {% if not item_type == 'wiki' %}
                 {% include 'partials/blog/date.html.twig' %}
                 {% include 'partials/blog/taxonomy.html.twig' %}
 	    {% endif %}
@@ -23,7 +24,7 @@
     {% endif %}
 {% endblock %}
 
-{% block body %}
+{% block body %}	    
 <section id="body-wrapper" class="section wiki-listing">
     <section class="container {{ grid_size }}">
 
@@ -32,7 +33,7 @@
         {% endif %}
 
         {% embed 'partials/layout.html.twig' %}
-            {% block item %}
+        {% block item %}
                 {% include 'partials/wiki-item.html.twig' %}
             {% endblock %}
             {% block sidebar %}

@@ -118,13 +118,18 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 	  // $matches[2] = array of link addresses
           // $matches[3] = array of link text - including HTML code
 	  foreach($matches as $match) {
+	    $text = $match[3];
 	    $address = $match[2];
-	    $addressnomd = preg_replace('/.md$/', '', $address);
-	    $addressnomdnocapnosp = strtolower(str_replace(' ','-',$addressnomd));
-	    $finalStr = str_replace($address, $addressnomdnocapnosp, $finalStr);
-	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
-//	    $finalStr = str_replace($match[3], $match[3].'htmllinkmodified', $finalStr);
-	    $finalStr = str_replace($match[3], $match[3], $finalStr);
+	    $address = preg_replace('/.md$/', '', $address);
+	    $address = strtolower(str_replace(' ','-',$address));
+//	    $entities = array(':');
+//	    $replacements = array("_");
+//	    $address = str_replace($entities, $replacements, $address);
+//	    $text = $text.'htmllinkmodified';
+//	    $text = $address; //just to display the url in the page, to inspect
+	    $finalStr = str_replace($match[2], $address, $finalStr);
+//	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
+	    $finalStr = str_replace($match[3], $text, $finalStr);
 //	    // $match[2] = link address
 //	    // $match[3] = link text
 	  }
@@ -164,5 +169,5 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
     {
         return (trim(chunk_split($string, $chunksize, $delimiter), $delimiter));
     }
-    
+
 }

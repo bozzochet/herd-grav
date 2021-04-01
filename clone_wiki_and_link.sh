@@ -31,25 +31,21 @@ do
 		    #ls -d ${WIKISPATH}/${i}/${j}/${k}
 		    BASENAME=`basename ${WIKISPATH}/${i}/${j}/${k} .md`
 #		    echo $BASENAME
+		    BASENAME=`echo $BASENAME | sed 's/:/_/'`
+#		    echo $BASENAME
 		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
 		    then
 			mkdir -p user/pages/${PART}/${j}
-			echo "---" > user/pages/${PART}/${j}/item.md
-			echo "body_classes: 'header-dark header-transparent'" >> user/pages/${PART}/${j}/item.md
-			echo "hero_classes: 'text-light title-h1h2 overlay-dark-gradient hero-large parallax'" >> user/pages/${PART}/${j}/item.md
-			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/item.md
-			echo "---" >> user/pages/${PART}/${j}/item.md
-			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/item.md
-#			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/
+			./herd_wiki_template.sh ${PART} > item.md
+			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
+			sed 's/%3A/_/' item.md > item.md.new
+			mv item.md.new user/pages/${PART}/${j}/item.md
 		    else
 			mkdir -p user/pages/${PART}/${j}/${BASENAME}
-			echo "---" > user/pages/${PART}/${j}/${BASENAME}/item.md
-			echo "body_classes: 'header-dark header-transparent'" >> user/pages/${PART}/${j}/${BASENAME}/item.md
-			echo "hero_classes: 'text-light title-h1h2 overlay-dark-gradient hero-large parallax'" >> user/pages/${PART}/${j}/${BASENAME}/item.md
-			echo "hero_image: mountain.jpg" >> user/pages/${PART}/${j}/${BASENAME}/item.md
-			echo "---" >> user/pages/${PART}/${j}/${BASENAME}/item.md
-			cat ${WIKISPATH}/${i}/${j}/${k} >> user/pages/${PART}/${j}/${BASENAME}/item.md
-#			cp WikiTemplate/mountain.jpg user/pages/${PART}/${j}/${BASENAME}/
+			./herd_wiki_template.sh ${PART} > item.md
+			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
+			sed 's/%3A/_/' item.md > item.md.new
+			mv item.md.new user/pages/${PART}/${j}/${BASENAME}/item.md
 		    fi
 		fi
 	    done
@@ -58,12 +54,10 @@ do
 	    #	    if [ "${j}" == "home.md" ]
 	    if [ "${j}" == "index.md" ]
 	    then
-		./herd_wiki_template.sh ${PART} > item.md
-		echo "" >> item.md
-		cat ${WIKISPATH}/${i}/${j} >> item.md
 		mkdir -p user/pages/${PART}/
+		./herd_wiki_template.sh ${PART} > item.md
+		cat ${WIKISPATH}/${i}/${j} >> item.md
 		mv item.md user/pages/${PART}/
-#		cp WikiTemplate/mountain.jpg user/pages/${PART}/
 	    elif [ "${j}" == "_sidebar.md" ]
 	    then
 		mkdir -p user/pages/${PART}
@@ -75,7 +69,9 @@ do
 		BASENAME=`basename ${WIKISPATH}/${i}/${j} .md`
 #		echo $BASENAME
 		mkdir -p user/pages/${PART}/${BASENAME}
-		cp ${WIKISPATH}/${i}/${j} user/pages/${PART}/${BASENAME}/item.md
+		./herd_wiki_template.sh ${PART} > item.md
+		cat ${WIKISPATH}/${i}/${j} >> item.md
+		mv item.md user/pages/${PART}/${BASENAME}/
 	    fi
 	fi
     done
