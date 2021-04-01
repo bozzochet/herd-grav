@@ -128,7 +128,7 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
 //	    $text = $text.'htmllinkmodified';
 //	    $text = $address; //just to display the url in the page, to inspect
 	    $finalStr = str_replace($match[2], $address, $finalStr);
-//	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
+	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
 	    $finalStr = str_replace($match[3], $text, $finalStr);
 //	    // $match[2] = link address
 //	    // $match[3] = link text
