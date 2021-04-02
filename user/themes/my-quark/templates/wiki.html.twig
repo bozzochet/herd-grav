@@ -23,40 +23,41 @@
 {% endblock %}
 
 {% block body %}
-    <section id="body-wrapper" class="section wiki-listing">
-        <section class="container {{ grid_size }}">
+<section id="body-wrapper" class="section wiki-listing">
+  <section class="container {{ grid_size }}">
+    
+    {% if show_breadcrumbs and config.plugins.breadcrumbs.enabled %}
+    {% include 'partials/breadcrumbs.html.twig' %}
+    {% endif %}
+    
+    {% embed 'partials/layout.html.twig' with {wiki: page} %}
+    {% block item %}
+    
+    <div class="bricklayer">
+      {% for child in collection %}
+      {% include 'partials/wiki-list-item.html.twig' with {wiki: page, page: child} %}
+      {% endfor %}
+    </div>
+    
+    {% if show_pagination and config.plugins.pagination.enabled and collection.params.pagination %}
+    <div id="listing-footer">
+      {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: collection.params.pagination} %}
+    </div>
+    {% endif %}
+    
+    {% endblock %}
 
-        {% if show_breadcrumbs and config.plugins.breadcrumbs.enabled %}
-            {% include 'partials/breadcrumbs.html.twig' %}
-        {% endif %}
-
-        {% embed 'partials/layout.html.twig' with {wiki: page} %}
-            {% block item %}
-
-                <div class="bricklayer">
-                {% for child in collection %}
-                    {% include 'partials/wiki-list-item.html.twig' with {wiki: page, page: child} %}
-                {% endfor %}
-                </div>
-
-                {% if show_pagination and config.plugins.pagination.enabled and collection.params.pagination %}
-                    <div id="listing-footer">
-                        {% include 'partials/pagination.html.twig' with {base_url: page.url, pagination: collection.params.pagination} %}
-                    </div>
-                {% endif %}
-
-            {% endblock %}
-
-            {% block sidebar %}
-                {% include 'partials/wiki-sidebar.html.twig' %}
-            {% endblock %}
-        {% endembed %}
-        </section>
-    </section>
-    <script>
-        //Bricklayer
-        var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
-    </script>
+    {% block sidebar %}
+      {% include 'partials/wiki-sidebar.html.twig' %}
+    {% endblock %}
+    
+    {% endembed %}
+  </section>
+</section>
+<script>
+  //Bricklayer
+  var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
+</script>
 {% endblock %}
 
 

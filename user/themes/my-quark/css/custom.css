@@ -9,3 +9,12 @@
 }
 
 h1, .h1 { font-size: 3.5em; }
+
+@media screen and (min-width: 841px) {
+  #sidebar {
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 7rem);
+    overflow-y: auto;
+  }
+}

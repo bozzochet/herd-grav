@@ -24,6 +24,8 @@ bin/gpm install -y blackhole
 
 bin/gpm install -y page-toc
 
+bin/gpm install -y markdown-details
+
 bin/gpm update -y
 
 # custom plugins
