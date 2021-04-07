@@ -81,25 +81,71 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
     }
 
     /**
+    * Basic function processing link text and address
+    */
+    function ProcessTextAddress($string, $textorig, $addressorig)
+    {
+        $finalStr = $string;
+	$text = $textorig;
+	$address = $addressorig;
+        $address = preg_replace('/.md$/', '', $address);
+        $address = strtolower(str_replace(' ','-',$address));
+//	  $entities = array(':');
+//	  $replacements = array("_");
+//	  $address = str_replace($entities, $replacements, $address);
+//	  $text = $textorig.'htmllinkmodified';
+//        $text = $address; //just to display the url in the page, to inspect
+        $finalStr = str_replace($addressorig, $address, $finalStr);
+	$finalStr = str_replace($textorig, $text, $finalStr);
+        $finalStr = str_replace("/table-of-contents", "", $finalStr);
+	$finalStr = str_replace("/modules/sidebar", "", $finalStr);
+        return $finalStr;
+    }
+
+    /**
+     * Proces GitLab Markdown URLs
+     */
+//    public function ProcessMarkdownLinks($string)
+//    {
+//    	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) {
+//		      $thisurl = $_SERVER['REQUEST_URI'];
+//		      $lastdir = pathinfo($thisurl)['filename'];
+//		      $onlythis = str_replace(basename($thisurl), "", strtolower(str_replace(' ','-',$matches[2])));
+//		      $prefixpath = str_replace($lastdir, "", $thisurl);
+//		      $newurl = $prefixpath.$onlythis;
+//		      $rooturl = $this->grav['uri']->rootUrl(false);
+//		      $newurl = str_replace($rooturl, "", $newurl);
+////		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
+////		      return '['.$newurl.']('.$newurl.')';#only to inspect
+////		      return '['.$matches[1].'mdlinkmodified]('.$newurl.')';
+//		      return '['.$matches[1].']('.$newurl.')';
+//		  }, $string);
+////	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '['.$matches[1].'mdlinkmodified]('.strtolower(str_replace(' ','-',$matches[2])).')'; }, $string);
+////	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '<a href="'.strtolower(str_replace(' ','-',$matches[2])).'">prova'.$matches[1].'</a>'; }, $string);
+////        return $finalStr.'_markdownlinksprocessed';
+//        return $finalStr;
+//    }
+
+    /**
      * Proces GitLab Markdown URLs
      */
     public function ProcessMarkdownLinks($string)
     {
-    	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) {
-		      $thisurl = $_SERVER['REQUEST_URI'];
-		      $lastdir = pathinfo($thisurl)['filename'];
-		      $onlythis = str_replace(basename($thisurl), "", strtolower(str_replace(' ','-',$matches[2])));
-		      $prefixpath = str_replace($lastdir, "", $thisurl);
-		      $newurl = $prefixpath.$onlythis;
-		      $rooturl = $this->grav['uri']->rootUrl(false);
-		      $newurl = str_replace($rooturl, "", $newurl);
-//		      return '['.$matches[1].']('.strtolower(str_replace(' ','-',$matches[2])).')';#original
-//		      return '['.$newurl.']('.$newurl.')';#only to inspect
-//		      return '['.$matches[1].'mdlinkmodified]('.$newurl.')';
-		      return '['.$matches[1].']('.$newurl.')';
-		  }, $string);
-//	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '['.$matches[1].'mdlinkmodified]('.strtolower(str_replace(' ','-',$matches[2])).')'; }, $string);
-//	$finalStr = preg_replace_callback('/\[([^\]]+)\]\(([^\)]+)\)/', function ($matches) { return '<a href="'.strtolower(str_replace(' ','-',$matches[2])).'">fava'.$matches[1].'</a>'; }, $string);
+        $finalStr = $string;
+	// Original PHP code by Chirp Internet: www.chirpinternet.eu
+        // Please acknowledge use of this code by including this header
+//	  if(preg_match_all('/\[([^\]]+)\]\(([^\)]+)\)/', $string, $matches)) {
+//	    $match[2] = link address
+//	    $match[1] = link text
+	if(preg_match_all('/\[([^\]]+)\]\(([^\)]+)\)/', $string, $matches, PREG_SET_ORDER)) {
+//	    $matches[2] = array of link addresses
+//          $matches[1] = array of link text - including HTML code
+	  foreach($matches as $match) {
+	    $text = $match[1];
+	    $address = $match[2];
+	    $finalStr = $this->ProcessTextAddress($finalStr, $text, $address);
+	  }
+	}
 //        return $finalStr.'_markdownlinksprocessed';
         return $finalStr;
     }
@@ -109,29 +155,20 @@ class DeCapitalizeGitlabLinksPlugin extends Plugin
      */
     public function ProcessHTMLLinks($string)
     {
-	$finalStr = $string;
+        $finalStr = $string;
 	// Original PHP code by Chirp Internet: www.chirpinternet.eu
         // Please acknowledge use of this code by including this header.
 	$regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
-//	if(preg_match_all("/$regexp/siU", $string, $matches)) {
+//	  if(preg_match_all("/$regexp/siU", $string, $matches)) {
+//	    $match[2] = link address
+//	    $match[3] = link text
 	if(preg_match_all("/$regexp/siU", $string, $matches, PREG_SET_ORDER)) {
-	  // $matches[2] = array of link addresses
-          // $matches[3] = array of link text - including HTML code
+//	    $matches[2] = array of link addresses
+//          $matches[3] = array of link text - including HTML code
 	  foreach($matches as $match) {
 	    $text = $match[3];
 	    $address = $match[2];
-	    $address = preg_replace('/.md$/', '', $address);
-	    $address = strtolower(str_replace(' ','-',$address));
-//	    $entities = array(':');
-//	    $replacements = array("_");
-//	    $address = str_replace($entities, $replacements, $address);
-//	    $text = $text.'htmllinkmodified';
-//	    $text = $address; //just to display the url in the page, to inspect
-	    $finalStr = str_replace($match[2], $address, $finalStr);
-	    $finalStr = str_replace("/table-of-contents", "", $finalStr);
-	    $finalStr = str_replace($match[3], $text, $finalStr);
-//	    // $match[2] = link address
-//	    // $match[3] = link text
+	    $finalStr = $this->ProcessTextAddress($finalStr, $text, $address);
 	  }
 	}
 //        return $finalStr.'_htmllinksprocessed';
