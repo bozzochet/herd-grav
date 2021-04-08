@@ -33,8 +33,17 @@ if [ ! -e user/plugins/de-capitalize-gitlab-links/ ]
 then
     cd user/plugins/
     ln -s ../../de-capitalize-gitlab-links ./
-#    cp -av de-capitalize-gitlab-links user/plugins/
+    #    cp -av de-capitalize-gitlab-links user/plugins/
+    cd -
 fi
 cd de-capitalize-gitlab-links/
 ../composer.phar update
 cd ..
+
+# hacked plugins
+if [ -e user/plugins/markdown-details/ ]
+then
+    cd user/plugins/markdown-details/
+    ln -sf ../../../markdown-details-hack/markdown-details.php ./
+    cd -
+fi

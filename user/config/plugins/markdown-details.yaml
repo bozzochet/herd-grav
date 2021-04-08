@@ -1,6 +1,6 @@
 enabled: true
-built_in_css: true
-a11y: true
+built_in_css: false
+a11y: false
 base_class: details
 title_class: details__title
 trigger_class: details__trigger
