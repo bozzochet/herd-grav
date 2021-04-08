@@ -1,6 +1,8 @@
 # v1.7.10
-## mm/dd/2021
+## 04/06/2021
 
+1. [](#new)
+    * Added initial support for running Grav library from outside the webroot [#3297](https://github.com/getgrav/grav/issues/3297)
 1. [](#improved)
     * Improved password handling when saving a user
 1. [](#bugfix)
@@ -9,6 +11,9 @@
     * Fixed moving `Flex Page` to itself causing the page to be lost [#3227](https://github.com/getgrav/grav/issues/3227)
     * Fixed `PageStorage` from detecting files as pages
     * Fixed `UserIndex` not implementing `UserCollectionInterface`
+    * Fixed missing `onAdminAfterDelete` event call in `Flex Pages`
+    * Fixed system templates not getting scanned [#3296](https://github.com/getgrav/grav/issues/3296)
+    * Fixed incorrect routing if url path looks like a domain name [#2184](https://github.com/getgrav/grav/issues/2184)
 
 # v1.7.9
 ## 03/19/2021
