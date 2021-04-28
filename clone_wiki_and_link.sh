@@ -2,6 +2,7 @@
 
 WIKISPATH=Wikis
 WIKIDEPLOYDIR=user/pages/wiki
+WIKIDEPLOYDIRBASE=`basename ${WIKIDEPLOYDIR}`
 
 mkdir -p $WIKISPATH
 
@@ -28,12 +29,18 @@ done
 cd $CURRENTDIR
 
 rm -Rf ${WIKIDEPLOYDIR}
-for i in `ls ${WIKISPATH}/`
+
+mkdir -p ${WIKIDEPLOYDIR}
+./herd_wiki_template_choice.sh > item.md.choice
+echo "<h3>" >> item.md.choice
+
+for i in `ls -r ${WIKISPATH}/`
 do
     #	echo ${i}
     WIKIVER=${i}
-    WIKIVERDIR="v${WIKIVER}"
     #	    echo $WIKIVER
+    WIKIVERDIR="v${WIKIVER}"
+    echo "<br><a href=\"${WIKIDEPLOYDIRBASE}/${WIKIVERDIR}\"><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> ${WIKIVER}</a>" >> item.md.choice
 #    rm -Rf ${WIKIDEPLOYDIR}/${WIKIVERDIR}
     mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}
     for j in `ls ${WIKISPATH}/${i}`
@@ -55,14 +62,14 @@ do
 		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
 		    then
 			mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}
-			./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
+			./herd_wiki_template.sh ${WIKIVER} ${WIKIDEPLOYDIRBASE}/${WIKIVERDIR} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
 			sed 's/%3A/-/' item.md > item.md.new
 			mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/item.md
 			rm item.md
 		    else
 			mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/${BASENAME}
-			./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
+			./herd_wiki_template.sh ${WIKIVER} ${WIKIDEPLOYDIRBASE}/${WIKIVERDIR} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
 			sed 's/%3A/-/' item.md > item.md.new
 			mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/${BASENAME}/item.md
@@ -81,7 +88,7 @@ do
 	    if [ "${j}" == "index.md" ]
 	    then
 		mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/
-		./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
+		./herd_wiki_template.sh ${WIKIVER} ${WIKIDEPLOYDIRBASE}/${WIKIVERDIR} > item.md
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		sed 's/%3A/-/' item.md > item.md.new
 		mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/item.md
@@ -99,7 +106,7 @@ do
 		BASENAME=`basename ${WIKISPATH}/${i}/${j} .md`
 #		echo $BASENAME
 		mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${BASENAME}
-		./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
+		./herd_wiki_template.sh ${WIKIVER} ${WIKIDEPLOYDIRBASE}/${WIKIVERDIR} > item.md
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		sed 's/%3A/-/' item.md > item.md.new
 		mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${BASENAME}/item.md
@@ -108,3 +115,6 @@ do
 	fi
     done
 done
+
+echo "</h3>" >> item.md.choice
+mv item.md.choice ${WIKIDEPLOYDIR}/item.md

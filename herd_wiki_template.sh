@@ -1,7 +1,12 @@
 #!/bin/bash
 
 echo "---"
-echo "title: 'HERD Wiki - Version $1'"
+if [[ $0 == *"herd_wiki_template_choice.sh"* ]]
+then
+    echo "title: 'HERD Wiki'"
+else
+    echo "title: 'HERD Wiki - Version $1'"
+fi
 #echo "sitemap:"
 #echo "    changefreq: monthly"
 echo "body_classes: 'header-dark header-transparent'"
@@ -12,8 +17,11 @@ echo "header_image_height: 10"
 #echo "custom: 'new thing'"
 #echo "blog_url: '/blog'"
 echo "item_type: 'wiki'"
-echo "show_sidebar: true"
-echo "sidebar_root: $2"
+if [[ ! $0 == *"herd_wiki_template_choice.sh"* ]]
+then
+    echo "show_sidebar: true"
+    echo "sidebar_root: $2"
+fi
 echo "hero_noarrow: true"
 #echo "content:"
 #echo "    items:"
@@ -34,3 +42,10 @@ echo "    twig: false"
 echo "twig_first: false"
 echo "---"
 echo ""
+
+if [[ $0 == *"herd_wiki_template_choice.sh"* ]]
+then
+    echo ""
+    echo "# HERD-SW Wiki versions"
+    echo ""
+fi
