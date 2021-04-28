@@ -1,24 +1,41 @@
 #!/bin/bash
 
 WIKISPATH=Wikis
+WIKIDEPLOYDIR=user/pages/wiki
 
 mkdir -p $WIKISPATH
 
-rm -Rf ${WIKISPATH}/master
+rm -Rf ${WIKISPATH}
 #git clone git@git.recas.ba.infn.it:herd/HerdSoftware.wiki.git ${WIKISPATH}/master #master
 #git clone https://wiki-webdoc-readrepo:CXVwDJEyNa7zYXhqDS7t@git.recas.ba.infn.it/herd/HerdSoftware.wiki.git ${WIKISPATH}/master #master
 #git clone https://git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/master #master
 git clone https://wiki-webdoc-readrepo:2LScf6SCNrvUoxTojd8s@git.recas.ba.infn.it/herd/HerdSoftwareWiki.git ${WIKISPATH}/master #master
 
-#PART=01.blog
+CURRENTDIR=`pwd`
 
+cd $WIKISPATH/master
+
+for i in `git tag | egrep '^[0-9]+\.[0-9]+\.[0-9]+$'` #to match only tags x.y.z, where x, y and z are numbers (even with two or more digits)
+do 
+    echo $i
+    cp -a ../master ../$i
+    cd ../$i
+    git checkout $i &> /dev/null
+    rm -Rf ./.git
+    cd - &> /dev/null
+done
+
+cd $CURRENTDIR
+
+rm -Rf ${WIKIDEPLOYDIR}
 for i in `ls ${WIKISPATH}/`
 do
     #	echo ${i}
     WIKIVER=${i}
+    WIKIVERDIR="v${WIKIVER}"
     #	    echo $WIKIVER
-    rm -Rf user/pages/${WIKIVER}
-    mkdir -p user/pages/${WIKIVER}
+#    rm -Rf ${WIKIDEPLOYDIR}/${WIKIVERDIR}
+    mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}
     for j in `ls ${WIKISPATH}/${i}`
     do
 #	echo ${WIKISPATH}/${i}/${j}
@@ -37,24 +54,24 @@ do
 #		    echo $BASENAME
 		    if [[ "${WIKISPATH}/${i}/${j}/${k}" == *"Table-of-contents.md" ]]
 		    then
-			mkdir -p user/pages/${WIKIVER}/${j}
-			./herd_wiki_template.sh ${WIKIVER} > item.md
+			mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}
+			./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
 			sed 's/%3A/-/' item.md > item.md.new
-			mv item.md.new user/pages/${WIKIVER}/${j}/item.md
+			mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/item.md
 			rm item.md
 		    else
-			mkdir -p user/pages/${WIKIVER}/${j}/${BASENAME}
-			./herd_wiki_template.sh ${WIKIVER} > item.md
+			mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/${BASENAME}
+			./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
 			cat ${WIKISPATH}/${i}/${j}/${k} >> item.md
 			sed 's/%3A/-/' item.md > item.md.new
-			mv item.md.new user/pages/${WIKIVER}/${j}/${BASENAME}/item.md
+			mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/${BASENAME}/item.md
 			rm item.md
 		    fi
 		else
 		    #		    echo ${WIKISPATH}/${i}/${j}/${k}
-		    mkdir -p user/pages/${WIKIVER}/${j}
-		    cp -a ${WIKISPATH}/${i}/${j}/${k} user/pages/${WIKIVER}/${j}/${k}
+		    mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}
+		    cp -a ${WIKISPATH}/${i}/${j}/${k} ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${j}/${k}
 		fi
 	    done
 	else
@@ -63,29 +80,29 @@ do
 	    #	    if [ "${j}" == "home.md" ]
 	    if [ "${j}" == "index.md" ]
 	    then
-		mkdir -p user/pages/${WIKIVER}/
-		./herd_wiki_template.sh ${WIKIVER} > item.md
+		mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/
+		./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		sed 's/%3A/-/' item.md > item.md.new
-		mv item.md.new user/pages/${WIKIVER}/item.md
+		mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/item.md
 		rm item.md
 	    elif [ "${j}" == "_sidebar.md" ]
 	    then
-		mkdir -p user/pages/${WIKIVER}
-		cp -a WikiTemplate/modules user/pages/${WIKIVER}/
+		mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}
+		cp -a WikiTemplate/modules ${WIKIDEPLOYDIR}/${WIKIVERDIR}/
 		cat ${WIKISPATH}/${i}/${j} > default.md
 		sed 's/%3A/-/' default.md > wiki-sidebar.md
-		mv wiki-sidebar.md user/pages/${WIKIVER}/modules/sidebar/
+		mv wiki-sidebar.md ${WIKIDEPLOYDIR}/${WIKIVERDIR}/modules/sidebar/
 		rm default.md
 	    elif [ "${j}" == "Wanted.md" ]
 	    then
 		BASENAME=`basename ${WIKISPATH}/${i}/${j} .md`
 #		echo $BASENAME
-		mkdir -p user/pages/${WIKIVER}/${BASENAME}
-		./herd_wiki_template.sh ${WIKIVER} > item.md
+		mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${BASENAME}
+		./herd_wiki_template.sh ${WIKIVER} `basename ${WIKIDEPLOYDIR}`/${WIKIVERDIR} > item.md
 		cat ${WIKISPATH}/${i}/${j} >> item.md
 		sed 's/%3A/-/' item.md > item.md.new
-		mv item.md.new user/pages/${WIKIVER}/${BASENAME}/item.md
+		mv item.md.new ${WIKIDEPLOYDIR}/${WIKIVERDIR}/${BASENAME}/item.md
 		rm item.md
 	    fi
 	fi
