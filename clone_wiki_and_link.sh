@@ -40,7 +40,12 @@ do
     WIKIVER=${i}
     #	    echo $WIKIVER
     WIKIVERDIR="v${WIKIVER}"
-    echo "<br><a href=\"${WIKIDEPLOYDIRBASE}/${WIKIVERDIR}\"><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> ${WIKIVER}</a>" >> item.md.choice
+    if [[ "${WIKIVER}" == "master" ]]
+    then
+	echo "<br><a href=\"${WIKIDEPLOYDIRBASE}/${WIKIVERDIR}\"><i class=\"fa fa-code-fork\" aria-hidden=\"true\"></i> ${WIKIVER}</a>" >> item.md.choice
+    else
+	echo "<br><a href=\"${WIKIDEPLOYDIRBASE}/${WIKIVERDIR}\"><i class=\"fa fa-tag\" aria-hidden=\"true\"></i> ${WIKIVER}</a>" >> item.md.choice
+    fi
 #    rm -Rf ${WIKIDEPLOYDIR}/${WIKIVERDIR}
     mkdir -p ${WIKIDEPLOYDIR}/${WIKIVERDIR}
     for j in `ls ${WIKISPATH}/${i}`
