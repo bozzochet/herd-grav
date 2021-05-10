@@ -6,7 +6,7 @@ visible: false
 ---
 
 <p style="font-family:'Courier New'; font-size:small;">
-Created and manteined by:
+Created and maintained by:
 </br>
 Matteo Duranti <a href="mailto:{{'matteo.duranti@cern.ch'|safe_email}}"><i class="fa fa-envelope-o" aria-hidden="true">
 </i></a>
