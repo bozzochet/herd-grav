@@ -8,6 +8,9 @@ It also contains (in the root dir):
 * `install_composer.sh`
 * `install_plugins.sh`
 * `remove_plugins.sh`
+* `clone_wiki_and_link.sh`
+* `herd_wiki_template_choice.sh`
+* `herd_wiki_template.sh`
 
 few scripts (to deply the website automatically) a dedicated readme (`LEGGIMI`, in italian...) file.
 
