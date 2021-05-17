@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ONLYTAG=1
+
 WIKISPATH=Wikis
 WIKIDEPLOYDIR=user/pages/wiki
 WIKIDEPLOYDIRBASE=`basename ${WIKIDEPLOYDIR}`
@@ -25,6 +27,20 @@ do
     rm -Rf ./.git
     cd - &> /dev/null
 done
+
+if [[ "$ONLYTAG" != 1 ]]
+then
+    for i in `git branch -r | grep -v HEAD | grep -v master`
+    do
+	branch=${i#"origin/"}
+	echo $branch
+	cp -a ../master ../$branch
+	cd ../$branch
+	git checkout $branch &> /dev/null
+	rm -Rf ./.git
+	cd - &> /dev/null
+    done
+fi
 
 cd $CURRENTDIR
 
