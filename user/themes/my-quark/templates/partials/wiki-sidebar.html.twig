@@ -22,7 +22,9 @@
   </div>
   {% endif %}
 
-  {{ page.find("/#{sidebar_root}/modules/sidebar").content|processmarkdownlinks|processhtmllinks|raw }}
+  <div class="sidebar-content">
+    {{ page.find("/#{sidebar_root}/modules/sidebar").content|processmarkdownlinks|processhtmllinks|raw }}
+  </div>
   
   {% if config.plugins.taxonomylist.enabled %}
   <div class="sidebar-content">

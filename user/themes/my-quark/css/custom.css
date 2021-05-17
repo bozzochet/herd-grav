@@ -8,14 +8,42 @@
     padding-bottom: 0px;
 }
 
+/**
 h1, .h1 { font-size: 3.5em; }
+**/
 
-@media screen and (min-width: 841px) {
+/** wiki pages **/
+.e-content {
+    width: calc(140% - 220px);
+    #    background-color:#D2D2D2;
+    #    margin-right: 150px;
+    font-size: 0.95em;
+}
+
+h1, .h1.e-content {
+    font-size: 2em;
+}
+
+.page-toc {
+    font-size: 0.95em;
+}
+
+/**
+h4, .h4.page-toc {
+    font-size: 2em;
+}
+**/
+
+@media screen and (min-width: 841px) {    
   #sidebar {
+#    background-color:#D2D2D2;
     position: sticky;
+    width: 200px;
+    left: calc(100% - 200px);
     top: 4rem;
     height: calc(100vh - 7rem);
     overflow-y: auto;
+    font-size: 0.9em;
   }
 }
 
@@ -29,4 +57,58 @@ h1, .h1 { font-size: 3.5em; }
 
 .bibtexify-authors .bibtexify-author-etal:before {
   content: ", et al.";
+}
+
+/** Wiki Listing **/
+.wiki-listing {
+
+  .bricklayer-column {
+    padding-left: 0px;
+    padding-right: 25px;
+
+  }
+  .card {
+    margin-bottom: 25px;
+    border: 0;
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,0.1);
+  }
+
+  .card-footer {
+    text-align: right;
+  }
+
+  .wiki-date {
+    font-size: 13px;
+  }
+
+  .label {
+
+  }
+}
+
+/** Sidebar specific tweaks **/
+#sidebar {
+
+  ul.related-pages {
+    box-shadow: none;
+    padding: 0;
+    z-index: 1;
+
+    li {
+      border-bottom: 1px solid $border-color;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+  }
+
+  ul.archives {
+    list-style: none;
+    margin-left: 0;
+
+    .label {
+      vertical-align: text-top;
+    }
+  }
 }

@@ -3,7 +3,7 @@
     <div class="content-title text-center" style="font-size:12px">
         {% include 'partials/wiki/title.html.twig' with {title_level: 'h2'} %}
         {% if page.header.subtitle %}
-        <h3 >{{ page.header.subtitle }}</h3>
+        <h1 >{{ page.header.subtitle }}</h1>
         {% endif %}
 	{% if not wiki %}
 {#	    {% include 'partials/blog/date.html.twig' %} #}
@@ -14,17 +14,19 @@
 
 {% if page.content|containstoc %}
     {% if config.get('plugins.page-toc.active') or attribute(page.header, 'page-toc').active %}
-    <div class="page-toc" style="font-size:12px">
+    {#    <div class="page-toc" style="font-size:12px"> #}
+    <div class="page-toc">
         {% set table_of_contents = toc(page.content) %}
         {% if table_of_contents is not empty %}
-        <h4>Table of Contents</h4>
+        <h1>Table of Contents</h1>
         {{ table_of_contents|raw }}
         {% endif %}
     </div>
     {% endif %}
 {% endif %}
     
-    <div class="e-content" style="font-size:12px">
+{#    <div class="e-content" style="font-size:12px"> #}
+    <div class="e-content">
       {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|raw }}
 {#      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(true)|raw }} <! filters seem not doing anything, neither on the full string > #}
 {#      {{ page.content|removetoc|processmarkdownlinks|processhtmllinks|markdown(false)|raw }} #}
