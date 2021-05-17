@@ -2,11 +2,11 @@
 title: 'HERD Collaboration'
 body_classes: modular
 class: standard
-features: null
 menu: 'About Us'
 ---
 
-#<span style="color:rgb(71, 133, 231)">The HERD Collaboration</span>
+# [The HERD Collaboration](/collaboration)
+
 </br>
 </br>
-[plugin:page-inject](/mastertheses/_tesi)
+[plugin:page-inject](/collaboration/_collaboration)

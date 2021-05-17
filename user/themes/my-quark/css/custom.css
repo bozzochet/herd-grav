@@ -18,3 +18,15 @@ h1, .h1 { font-size: 3.5em; }
     overflow-y: auto;
   }
 }
+
+.bibtexify-authors li {
+  display:none;
+}
+
+.bibtexify-authors li:nth-child(-n+2) {
+  display: inline;
+}
+
+.bibtexify-authors .bibtexify-author-etal:before {
+  content: ", et al.";
+}
