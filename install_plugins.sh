@@ -27,6 +27,8 @@ bin/gpm install -y page-toc
 
 bin/gpm install -y markdown-details
 
+bin/gpm install -y highlight
+
 bin/gpm update -y
 
 # custom plugins
