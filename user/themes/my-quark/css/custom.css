@@ -47,9 +47,14 @@ table tbody tr {
 }
 
 table tbody tr:nth-child(odd) {
-    color:black;
+#    color:black;
     background:#dee8f8;
 #    background:rgba(221, 232, 248, 0.6);
+}
+
+table tbody tr:nth-child(even) {
+#    color:black;
+    background:white;
 }
 
 table tbody tr:hover{
