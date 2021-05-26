@@ -1,8 +1,8 @@
-title: 'HERD Perugia'
+title: 'HERD Collaboration WebSite'
 default_lang: null
 author:
   name: 'Matteo Duranti, Maura Graziani'
-  email: bozzo1983@gmail.com
+  email: matteo.duranti@infn.it
 taxonomies:
   - category
   - tag
